@@ -64,10 +64,9 @@ def national_team():
             if len(td.select('a')) > 0:
                 item[td.select('a')[0].text] = [{'REGION': td.select('a')[1].text}]
                 country = td.select('a')[0].text
-        write_json('/Users/panpangu/Downloads/test', item)
+        write_json('/Users/panpangu/FIFA2018/fifa/dataset/NationalTeam', item)
         offset += 60
 
 
 if __name__ == '__main__':
     national_team()
-    print(load_json('/Users/panpangu/Downloads/test'))
