@@ -64,9 +64,32 @@ def national_team():
             if len(td.select('a')) > 0:
                 item[td.select('a')[0].text] = [{'REGION': td.select('a')[1].text}]
                 country = td.select('a')[0].text
-        write_json('/Users/panpangu/FIFA2018/fifa/dataset/NationalTeam', item)
+        # write_json('/Users/panpangu/FIFA2018/dataset/NationalTeam', item)
         offset += 60
+    return item
+
+
+def average():
+    total_oa = 0
+    total_at = 0
+    total_md = 0
+    total_df = 0
+    total_avg = 0
+    count = 0
+    data = national_team()
+    for key, value in data.items():
+        if len(value) == 2:
+            total_oa += int(value[1]['BASIC']['oa'])
+            total_at += int(value[1]['BASIC']['at'])
+            total_md += int(value[1]['BASIC']['md'])
+            total_df += int(value[1]['BASIC']['df'])
+            total_avg += int(value[1]['BASIC']['avg'])
+            count += 1
+    payload = {'avg_oa': total_oa / count, 'avg_at': total_at / count, 'avg_md': total_md / count,
+               'avg_df': total_df / count, 'total_avg': total_avg / count}
+    data['avg'] = payload
+    write_json('/Users/panpangu/FIFA2018/dataset/NationalTeam', data)
 
 
 if __name__ == '__main__':
-    national_team()
+    average()
