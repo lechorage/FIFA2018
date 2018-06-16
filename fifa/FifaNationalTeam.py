@@ -88,7 +88,8 @@ def average():
     payload = {'avg_oa': total_oa / count, 'avg_at': total_at / count, 'avg_md': total_md / count,
                'avg_df': total_df / count, 'total_avg': total_avg / count}
     data['avg'] = payload
-    write_json('/Users/panpangu/FIFA2018/dataset/NationalTeam', data)
+    # write_json('/Users/panpangu/FIFA2018/dataset/NationalTeam', data)
+    print(data)
 
 
 if __name__ == '__main__':
